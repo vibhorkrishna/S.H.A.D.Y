@@ -1,2 +1,2 @@
-# S.H.A.D.Y
+# SHADY
 Smart Human Activity Detection Using YOLO

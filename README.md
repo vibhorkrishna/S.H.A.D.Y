@@ -88,16 +88,15 @@ python Fall_Detection.py
 
 ## Vehicle Crash Detection
 
-Work needs to be done
+More work needs to be done.
+
 Every contribution is helpful
 ### Approach to take
 You can follow these instructions:
 
- [Option-1](https://arxiv.org/pdf/1911.10037) 
- [Option-2](https://ieeexplore.ieee.org/abstract/document/8786306) 
+ [Option-1](https://arxiv.org/pdf/1911.10037) 	 [Option-2](https://ieeexplore.ieee.org/abstract/document/8786306) 
  
- [Option-3](https://ieeexplore.ieee.org/document/8832160?denied=) 
- [Option-4](https://www.hindawi.com/journals/jat/2020/9194028/) 
+ [Option-3](https://ieeexplore.ieee.org/document/8832160?denied=) 	 [Option-4](https://www.hindawi.com/journals/jat/2020/9194028/) 
 
 ## SHADY Website
 

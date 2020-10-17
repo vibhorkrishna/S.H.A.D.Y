@@ -11,7 +11,9 @@ This is a project to perform fall detection, vehicle crash detection and social 
 
 YOLO stands for You Only Look Once. It is used for object detection
 To perform object detection on an image it looks at an image only once in a very clever way unlike R-CNN which takes several instances of the same image to perform detection. 
+
 YOLO divides an image into a grid and several bounding boxes are formed. Then a confidence score is taken for each boundary box to see whether an bounding box contains any object within it. The confidence score is high if the object inside the box matches the pre-trained YOLO dataset ( [COCO Dataset](https://cocodataset.org/) ). The higher the confidence score, the higher the probability that a bounding box contains an object. Now several bounding boxes will intersect with each other. More the bounding boxes intersect, more is the probability that there is an object inside that box. Now we only keep those bounding boxes whose confidence score is more than threshold value lets say 30%. Now we match these bounding boxes with already known features of an object like person, car and classify them.
+
 The good thing about YOLO is that all the predictions in the boxes are made at the same time i.e. the neural networks just ran only once.
 And that is why YOLO is powerful and fast.
 

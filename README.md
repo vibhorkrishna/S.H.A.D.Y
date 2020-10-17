@@ -115,4 +115,4 @@ You can follow these instructions:
 * Vehicle Crash Detection
 * Deploy the website from Google Cloud by using their GPU's (First darknet needs to be installed there)
 * Make changes on the website such that when someone enters the YouTube link then the python file is automatically executed in the terminal (backend) and detection is performed. More about this [here](https://stackoverflow.com/questions/63721161/how-to-run-a-python-file-using-the-input-from-an-html-form-and-show-the-results).
-* Display the detected video on a new webpage as shown on the photo of [Expected Detected Page](). Make sure the webpage shows the detected video in real-time. 
+* Display the detected video on a new webpage as shown on the photo of [Expected Detected Page](https://raw.githubusercontent.com/vibhorkrishna/S.H.A.D.Y/main/SHADY%20Website/video.PNG?raw=true). Make sure the webpage shows the detected video in real-time. 

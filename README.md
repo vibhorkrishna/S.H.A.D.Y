@@ -59,8 +59,11 @@ python Object_Detection.py
 ## Fall Detection
 ### Working
 We take the input video from a source and  divide the video into several frames. Now these frames are converted into black and white. On each frame a person is detected using YOLO. 
+
 Now we write the code to draw rectangles on the detected persons. Whenever the height of the rectangle is greater than width of the rectangle [Fall is not detected]() and when width is greater than height [Fall is detected]()
+
 And this is how we classify the images into a fall and not fall and an alert is generated if a fall is detected.
+
 All of the above process happens for a single frame. Now all of this is set in a loop for each frame of the video and Fall is detected.
 ### Running the script:
 ```
@@ -72,7 +75,9 @@ python Fall_Detection.py
 ## Social Distancing Detection
 ### Working
 We take the input video from a source and  divide the video into several frames. Now these frames are converted into black and white. On each frame a person is detected using YOLO. 
+
 Now we write the code to draw rectangles on the detected persons. We check the distances between each detected person on the frame from each other. If the distance between the two persons is less than a particular value then we colour the box red and draw a line between these boxes and add the no. of social distancing violations in a variable and display it. 
+
 All of the above process happens for a single frame. Now all of this is set in a loop for each frame of the video and Fall is detected.
 ### Running the script:
 ```
@@ -87,8 +92,10 @@ Work needs to be done
 Every contribution is helpful
 ### Approach to take
 You can follow these instructions:
+
  [Option-1](https://arxiv.org/pdf/1911.10037) 
  [Option-2](https://ieeexplore.ieee.org/abstract/document/8786306) 
+ 
  [Option-3](https://ieeexplore.ieee.org/document/8832160?denied=) 
  [Option-4](https://www.hindawi.com/journals/jat/2020/9194028/) 
 

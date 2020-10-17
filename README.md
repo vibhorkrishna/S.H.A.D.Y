@@ -1,7 +1,9 @@
 # S.H.A.D.Y
 
 Smart Human Activity Detection Using [YOLO](https://pjreddie.com/darknet/yolo/)
+
 ![Alt text](https://github.com/vibhorkrishna/S.H.A.D.Y/blob/main/SHADY%20Website/shady.PNG?raw=true)
+
 This is a project to perform fall detection, vehicle crash detection and social distancing detection from CCTV cameras in real-time.
 ## How YOLO works ?
 

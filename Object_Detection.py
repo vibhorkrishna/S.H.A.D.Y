@@ -6,6 +6,8 @@ import cv2
 import numpy as np
 import time
 import darknet
+import pafy
+import youtube_dl
 
 
 def convertBack(x, y, w, h):
@@ -108,8 +110,19 @@ def YOLO():
                     pass
         except Exception:
             pass
+            
     #cap = cv2.VideoCapture(0)                                      # Uncomment to use Webcam
-    cap = cv2.VideoCapture("Video_for_Testing.mp4")                             # Local Stored video detection - Set input video
+    
+    #cap = cv2.VideoCapture("Video_for_Testing.mp4")                # Uncomment for Local Stored video detection - Set input video
+    
+    #url = "https://www.youtube.com/watch?v=isveXCH4NcM"            # Uncomment these lines for video from youtube
+    #video = pafy.new(url)
+    #best = video.getbest(preftype="mp4")
+    #cap = cv2.VideoCapture()
+    #cap.open(best.url)    
+    
+    #cap = cv2.VideoCapture('http://192.168.0.102:4747/mjpegfeed')  # Uncomment for Video from Mobile Camera (DroidCam Hosted Camera)
+    
     frame_width = int(cap.get(3))                                   # Returns the width and height of capture video
     frame_height = int(cap.get(4))
     # Set out for video writer

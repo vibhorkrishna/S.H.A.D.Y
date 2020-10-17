@@ -66,7 +66,7 @@ And this is how we classify the images into a fall and not fall and an alert is 
 
 All of the above process happens for a single frame. Now all of this is set in a loop for each frame of the video and Fall is detected.
 ### Running the script:
-```
+```python
 python Fall_Detection.py
 ```
 ### Sample Output:
@@ -80,7 +80,7 @@ Now we write the code to draw rectangles on the detected persons. We check the d
 
 All of the above process happens for a single frame. Now all of this is set in a loop for each frame of the video and Fall is detected.
 ### Running the script:
-```
+```python
 python Fall_Detection.py
 ```
 ### Sample Output:
@@ -94,9 +94,13 @@ Every contribution is helpful
 ### Approach to take
 You can follow these instructions:
 
- [Option-1](https://arxiv.org/pdf/1911.10037) 			 [Option-2](https://ieeexplore.ieee.org/abstract/document/8786306) 
+ [Option-1](https://arxiv.org/pdf/1911.10037) 
  
- [Option-3](https://ieeexplore.ieee.org/document/8832160?denied=) 			 [Option-4](https://www.hindawi.com/journals/jat/2020/9194028/) 
+ [Option-2](https://ieeexplore.ieee.org/abstract/document/8786306) 
+ 
+ [Option-3](https://ieeexplore.ieee.org/document/8832160?denied=) 		
+
+ [Option-4](https://www.hindawi.com/journals/jat/2020/9194028/) 
 
 ## SHADY Website
 

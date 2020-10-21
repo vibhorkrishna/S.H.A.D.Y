@@ -11,10 +11,11 @@ import darknet
 from itertools import combinations
 import pafy
 import youtube_dl
+import image_email
 
 def convertBack(x, y, w, h): 
     #================================================================
-    # 2.Purpose : Converts center coordinates to rectangle coordinates
+    # Purpose : Converts center coordinates to rectangle coordinates
     #================================================================  
     """
     :param:
@@ -30,6 +31,7 @@ def convertBack(x, y, w, h):
     ymax = int(round(y + (h / 2)))
     return xmin, ymin, xmax, ymax
 
+alert_var = 0          # makes sure that alert (Sending an E-mail) is generated only once
 
 def cvDrawBoxes(detections, img):
     """
@@ -40,8 +42,10 @@ def cvDrawBoxes(detections, img):
     :return:
     img with bbox
     """
+    global alert_var
+    
     #================================================================
-    # 3.1 Purpose : Filter out Persons class from detections
+    # Purpose : Filter out Persons class from detections
     #================================================================
     if len(detections) > 0:  						# At least 1 detection in the image and check detection presence in a frame  
         centroid_dict = dict() 						# Function creates a dictionary and calls it centroid_dict
@@ -60,7 +64,7 @@ def cvDrawBoxes(detections, img):
     #=================================================================#
     
     #=================================================================
-    # 3.2 Purpose : Determine the the person 
+    # Purpose : Determine the the person 
     #=================================================================            	
         fall_alert_list = [] # List containing which Object id is in under threshold distance condition. 
         red_line_list = []
@@ -78,12 +82,22 @@ def cvDrawBoxes(detections, img):
 		#=================================================================#
 
 		#=================================================================
-    	# 3.3 Purpose : Display Risk Analytics and Show Risk Indicators
+    	# Purpose : Display Risk Analytics and Show Risk Indicators
     	#================================================================= 
         if len(fall_alert_list)!=0:
             text = "Fall Detected"
+            
+            if alert_var == 20:         # makes sure that alert is generated when there are atleast 20 frames which shows that a fall has been detected
+                #image_email.SendMail(img)
+                img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+                cv2.imwrite('alert.jpg',img)
+                image_email.SendMail('alert.jpg')
+            alert_var += 1;
+            
         else:
             text = "Fall Not Detected"
+            alert_var = 0           # makes sure that alert is generated when there are 20 simultaeous frames of fall detection
+            
         location = (10,25)												# Set the location of the displayed text
         if len(fall_alert_list)!=0:
             cv2.putText(img, text, location, cv2.FONT_HERSHEY_SIMPLEX, 1, (255,0,0), 2, cv2.LINE_AA)  # Display Text

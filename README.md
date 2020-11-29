@@ -35,7 +35,7 @@ You can follow the two part YouTube videos of [Augmented Startups](https://www.y
 ### Usage
 After the above installation work is done and darknet libraries are working, place the python files inside [YOLO\darknet\build\darknet\x64]() folder.
 
-There are three ways to perform detection on videos:
+There are four ways to perform detection on videos:
 1. Video from Web Cam
 2. Local Stored Video
 3. YouTube video
@@ -55,7 +55,7 @@ Simple YOLO program for object detection.
 python Object_Detection.py
 ```
 ### Sample Output:
-![Alt text](https://miro.medium.com/max/872/1*wnr2e-W3WvYk_G51Y4oMCQ.png)
+![Alt text](https://github.com/vibhorkrishna/S.H.A.D.Y/blob/main/Screenshots/object.PNG?raw=true)
 ## Fall Detection
 ### Working
 We take the input video from a source and  divide the video into several frames. Now these frames are converted into black and white. On each frame a person is detected using YOLO. 
@@ -108,6 +108,13 @@ python Vehicle_Crash.py
 ### Sample Output:
 ![Alt text](https://github.com/vibhorkrishna/S.H.A.D.Y/blob/main/Screenshots/crash.PNG?raw=true)
 
+## Project Deployment
+We have deployed our project using flask. When we run the below script, our website is hosted onto a local server and we can use that website to perform detections on videos.
+### Running the script:
+```python
+python app.py
+```
+
 ## SHADY Website
 
 ### Home Page
@@ -130,6 +137,56 @@ python Vehicle_Crash.py
 ![Alt text](https://github.com/vibhorkrishna/S.H.A.D.Y/blob/main/Screenshots/vehicle_crash_detected.PNG?raw=true)
 ### Contact Us Page
 ![Alt text](https://github.com/vibhorkrishna/S.H.A.D.Y/blob/main/Screenshots/contact_us.PNG?raw=true)
+
+## Directory and File Structure
+After installing darknet keep the github files according to this file structure
+```
+darknet
+| 
+| 
+|───build
+|   |
+|   |
+|   |───darknet
+|   |	|
+|   |	|
+|   |	|───x64
+|   |	|   |   
+|   |	|   |   
+|   |	|   |───app.py
+|   |	|   |───Fall_Detection.py
+|   |	|   |───Object_Detection.py
+|   |	|   |───Social_Distance.py
+|   |	|   |───Vehicle_Crash.py
+|   |	|   |───image_email.py
+|   |	|   |
+|   |	|   |───templates
+|   |	|   |   | 
+|   |	|   |   | 
+|   |	|   |   |───ContactUs.html
+|   |	|   |   |───FallDetection.html
+|   |	|   |   |───ObjectDetection.html
+|   |	|   |   |───Shady.html
+|   |	|   |   |───SocialDistancingDetection.html
+|   |	|   |   |───VehicleCrashDetection.html
+|   |	|   |   |───Video.html
+|   |	|   |
+|   |	|   |───static
+|   |	|   |   | 
+|   |	|   |   | 
+|   |	|   |   |───assets
+|   |	|   |   |
+|   |	|   |   |
+|   |	|   |   |───...files...
+|   |	|   |   |───fonts
+|   |	|   |   |
+|   |	|   |   |
+|   |	|   |   |───...files...
+|   |	|   |───...files...
+|   |   |───...files...	
+|   |───...files...
+|───...files...
+```
 
 ## Future Work
 * Improve the vehicle crash detection model

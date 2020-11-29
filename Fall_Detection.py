@@ -1,4 +1,3 @@
-
 #================================================================ 
 from ctypes import *
 import math
@@ -11,7 +10,7 @@ import darknet
 from itertools import combinations
 import pafy
 import youtube_dl
-import image_email
+#import image_email  # Uncomment for alert to email
 
 def convertBack(x, y, w, h): 
     #================================================================
@@ -31,7 +30,7 @@ def convertBack(x, y, w, h):
     ymax = int(round(y + (h / 2)))
     return xmin, ymin, xmax, ymax
 
-alert_var = 0          # makes sure that alert (Sending an E-mail) is generated only once
+#alert_var = 0     # Uncomment for alert to email     # makes sure that alert (Sending an E-mail) is generated only once
 
 def cvDrawBoxes(detections, img):
     """
@@ -42,7 +41,7 @@ def cvDrawBoxes(detections, img):
     :return:
     img with bbox
     """
-    global alert_var
+    #global alert_var   # Uncomment for alert to email
     
     #================================================================
     # Purpose : Filter out Persons class from detections
@@ -64,7 +63,7 @@ def cvDrawBoxes(detections, img):
     #=================================================================#
     
     #=================================================================
-    # Purpose : Determine the the person 
+    # Purpose : Determine whether the fall is detected or not 
     #=================================================================            	
         fall_alert_list = [] # List containing which Object id is in under threshold distance condition. 
         red_line_list = []
@@ -82,17 +81,17 @@ def cvDrawBoxes(detections, img):
 		#=================================================================#
 
 		#=================================================================
-    	# Purpose : Display Risk Analytics and Show Risk Indicators
+    	# Purpose : Displaying the results and sending an alert message
     	#================================================================= 
         if len(fall_alert_list)!=0:
             text = "Fall Detected"
             
-            if alert_var == 20:         # makes sure that alert is generated when there are atleast 20 frames which shows that a fall has been detected
-                #image_email.SendMail(img)
-                img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-                cv2.imwrite('alert.jpg',img)
-                image_email.SendMail('alert.jpg')
-            alert_var += 1;
+            #Uncomment the below lines for alert to email
+            #if alert_var == 20:         # makes sure that alert is generated when there are atleast 20 frames which shows that a fall has been detected
+                #img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB) 
+                #cv2.imwrite('alert.jpg',img)
+                #image_email.SendMail('alert.jpg')
+            #alert_var += 1;
             
         else:
             text = "Fall Not Detected"
@@ -118,10 +117,10 @@ def YOLO():
     Perform Object detection
     """
     global metaMain, netMain, altNames
-    configPath = "./cfg/yolov4-tiny.cfg"
-    weightPath = "./yolov4-tiny.weights"
-    metaPath = "./cfg/coco.data"
-    if not os.path.exists(configPath):
+    configPath = "./cfg/yolov4-tiny.cfg"                                 # Path to cfg
+    weightPath = "./yolov4-tiny.weights"                                 # Path to weights
+    metaPath = "./cfg/coco.data"                                         # Path to meta data
+    if not os.path.exists(configPath):                                   # Checks whether file exists otherwise return ValueError  
         raise ValueError("Invalid config path `" +
                          os.path.abspath(configPath)+"`")
     if not os.path.exists(weightPath):
@@ -130,9 +129,9 @@ def YOLO():
     if not os.path.exists(metaPath):
         raise ValueError("Invalid data file path `" +
                          os.path.abspath(metaPath)+"`")
-    if netMain is None:
+    if netMain is None:                                                  # Checks the metaMain, NetMain and altNames. Loads it in script
         netMain = darknet.load_net_custom(configPath.encode(
-            "ascii"), weightPath.encode("ascii"), 0, 1)  # batch size = 1
+            "ascii"), weightPath.encode("ascii"), 0, 1)                  # batch size = 1
     if metaMain is None:
         metaMain = darknet.load_meta(metaPath.encode("ascii"))
     if altNames is None:
@@ -156,56 +155,59 @@ def YOLO():
         except Exception:
             pass
             
-    #cap = cv2.VideoCapture(0)                                      # Uncomment to use Webcam
+    #cap = cv2.VideoCapture(0)                                           # Uncomment to use Webcam
     
-    #cap = cv2.VideoCapture("queda.mp4")                            # Uncomment for Local Stored video detection - Set input video
+    #cap = cv2.VideoCapture("fall-1.mp4")                                # Uncomment for Local Stored video detection - Set input video
+    #cap = cv2.VideoCapture("fall-2.mp4")
+    #cap = cv2.VideoCapture("fall-3.mp4")
+    #cap = cv2.VideoCapture("Fall-Detection-Original.mp4")
     
-    #url = "https://www.youtube.com/watch?v=isveXCH4NcM"            # Uncomment these lines for video from youtube
+    #url = "https://www.youtube.com/watch?v=isveXCH4NcM"                 # Uncomment these lines for video from youtube
     #video = pafy.new(url)
     #best = video.getbest(preftype="mp4")
     #cap = cv2.VideoCapture()
     #cap.open(best.url)    
     
-    #cap = cv2.VideoCapture('http://192.168.0.106:4747/mjpegfeed')  # Uncomment for Video from Mobile Camera (DroidCam Hosted Camera)
+    #cap = cv2.VideoCapture('http://192.168.0.106:4747/mjpegfeed')       # Uncomment for Video from Mobile Camera (DroidCam Hosted Camera)
     
-    frame_width = int(cap.get(3))
+    frame_width = int(cap.get(3))                                        # Returns the width and height of capture video   
     frame_height = int(cap.get(4))
     new_height, new_width = frame_height // 2, frame_width // 2
-    # print("Video Reolution: ",(width, height))
+    #print("Video Reolution: ",(width, height))
 
-    out = cv2.VideoWriter("output.avi", cv2.VideoWriter_fourcc(*"MJPG"), 10.0,
-            (new_width, new_height))
+    #out = cv2.VideoWriter("output.avi", cv2.VideoWriter_fourcc(*"MJPG"), 10.0,  # Uncomment to save the output video   # Set the Output path for video writer
+            #(new_width, new_height))
     
     # print("Starting the YOLO loop...")
 
     # Create an image we reuse for each detect
-    darknet_image = darknet.make_image(new_width, new_height, 3)
+    darknet_image = darknet.make_image(new_width, new_height, 3)         # Create image according darknet for compatibility of network
     
-    while True:
+    while True:                                                          # Load the input frame and write output frame.
         prev_time = time.time()
-        ret, frame_read = cap.read()
+        ret, frame_read = cap.read()                                   
         # Check if frame present :: 'ret' returns True if frame present, otherwise break the loop.
         if not ret:
             break
 
-        frame_rgb = cv2.cvtColor(frame_read, cv2.COLOR_BGR2RGB)
+        frame_rgb = cv2.cvtColor(frame_read, cv2.COLOR_BGR2RGB)          # Convert frame into RGB from BGR and resize accordingly
         frame_resized = cv2.resize(frame_rgb,
                                    (new_width, new_height),
                                    interpolation=cv2.INTER_LINEAR)
 
-        darknet.copy_image_from_bytes(darknet_image,frame_resized.tobytes())
+        darknet.copy_image_from_bytes(darknet_image,frame_resized.tobytes())    # Copy that frame bytes to darknet_image
 
-        detections = darknet.detect_image(netMain, metaMain, darknet_image, thresh=0.25)
-        image = cvDrawBoxes(detections, frame_resized)
+        detections = darknet.detect_image(netMain, metaMain, darknet_image, thresh=0.25)    # Detection occurs at this line and return detections, for customize we can change
+        image = cvDrawBoxes(detections, frame_resized)                   # Call the function cvDrawBoxes() for colored bounding box per class
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-        print(1/(time.time()-prev_time))
-        cv2.imshow('Demo', image)
+        print(1/(time.time()-prev_time))                             # Prints frames per second
+        cv2.imshow('Demo', image)                                    # Display Image window
         cv2.waitKey(3)
-        out.write(image)
-
-    cap.release()
-    out.release()
+        #out.write(image)                                            # Write that frame into output video
+        
+    cap.release()                                                    # For releasing cap and out. 
+    #out.release()                                                   # Uncomment to save the output video 
     print(":::Video Write Completed")
 
 if __name__ == "__main__":
-    YOLO()
+    YOLO()                                                           # Calls the main function YOLO()

@@ -1,4 +1,6 @@
-from ctypes import *                                               # Import libraries
+#================================================================ 
+# Import libraries
+from ctypes import *                                               
 import math
 import random
 import os
@@ -11,6 +13,17 @@ import youtube_dl
 
 
 def convertBack(x, y, w, h):
+    #================================================================
+    # Purpose : Converts center coordinates to rectangle coordinates
+    #================================================================  
+    """
+    :param:
+    x, y = midpoint of bbox
+    w, h = width, height of the bbox
+    
+    :return:
+    xmin, ymin, xmax, ymax
+    """
     xmin = int(round(x - (w / 2)))
     xmax = int(round(x + (w / 2)))
     ymin = int(round(y - (h / 2)))
@@ -19,6 +32,14 @@ def convertBack(x, y, w, h):
 
 
 def cvDrawBoxes(detections, img):
+    """
+    :param:
+    detections = total detections in one frame
+    img = image from detect_image method of darknet
+
+    :return:
+    img with bbox
+    """
     # Colored labels dictionary
     color_dict = {
         'person' : [0, 255, 255], 'bicycle': [238, 123, 158], 'car' : [24, 245, 217], 'motorbike' : [224, 119, 227],
@@ -126,9 +147,9 @@ def YOLO():
     frame_width = int(cap.get(3))                                   # Returns the width and height of capture video
     frame_height = int(cap.get(4))
     # Set out for video writer
-    out = cv2.VideoWriter(                                          # Set the Output path for video writer
-        "./Demo/output.avi", cv2.VideoWriter_fourcc(*"MJPG"), 10.0,
-        (frame_width, frame_height))
+    #out = cv2.VideoWriter(                                         # Uncomment to save the output video   # Set the Output path for video writer  
+        #"./Demo/output.avi", cv2.VideoWriter_fourcc(*"MJPG"), 10.0,
+        #(frame_width, frame_height))
 
     print("Starting the YOLO loop...")
 
@@ -151,12 +172,12 @@ def YOLO():
         detections = darknet.detect_image(netMain, metaMain, darknet_image, thresh=0.25)    # Detection occurs at this line and return detections, for customize we can change the threshold.                                                                                   
         image = cvDrawBoxes(detections, frame_resized)               # Call the function cvDrawBoxes() for colored bounding box per class
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-        print(1/(time.time()-prev_time))
+        print(1/(time.time()-prev_time))                             # Prints frames per second
         cv2.imshow('Demo', image)                                    # Display Image window
         cv2.waitKey(3)
-        out.write(image)                                             # Write that frame into output video
+        #out.write(image)                                            # Write that frame into output video
     cap.release()                                                    # For releasing cap and out. 
-    out.release()
+    #out.release()    #Uncomment to save the output video 
     print(":::Video Write Completed")
 
 if __name__ == "__main__":  

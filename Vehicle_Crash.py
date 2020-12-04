@@ -10,7 +10,7 @@ import darknet
 from itertools import combinations
 import pafy
 import youtube_dl
-#import image_email   #Uncomment for alert to email
+#import image_email_car   # Uncomment for alert to email
 
 def is_close(p1, p2):
     """
@@ -46,7 +46,7 @@ def convertBack(x, y, w, h):
     ymax = int(round(y + (h / 2)))
     return xmin, ymin, xmax, ymax
 
-#alert_var = 0      #Uncomment for alert to email       # makes sure that alert (Sending an E-mail) is generated only once
+#alert_var = 0      # Uncomment for alert to email       # makes sure that alert (Sending an E-mail) is generated only once
 
 def cvDrawBoxes(detections, img):
     """
@@ -114,10 +114,9 @@ def cvDrawBoxes(detections, img):
             
             #Uncomment the below lines for alert to email
             #if alert_var == 8:         # makes sure that alert is generated when there are atleast 3 frames which shows that a fall has been detected
-                #image_email.SendMail(img)
             #    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
             #    cv2.imwrite('crash_alert.jpg',img)
-            #    image_email.SendMail('crash_alert.jpg')
+            #    image_email_car.SendMail('crash_alert.jpg')
             #alert_var += 1;
         
         else:

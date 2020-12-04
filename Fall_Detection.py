@@ -10,7 +10,7 @@ import darknet
 from itertools import combinations
 import pafy
 import youtube_dl
-#import image_email  # Uncomment for alert to email
+#import image_email_fall  # Uncomment for alert to email
 
 def convertBack(x, y, w, h): 
     #================================================================
@@ -89,8 +89,8 @@ def cvDrawBoxes(detections, img):
             #Uncomment the below lines for alert to email
             #if alert_var == 20:         # makes sure that alert is generated when there are atleast 20 frames which shows that a fall has been detected
                 #img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB) 
-                #cv2.imwrite('alert.jpg',img)
-                #image_email.SendMail('alert.jpg')
+                #cv2.imwrite('fall_alert.jpg',img)
+                #image_email_fall.SendMail('fall_alert.jpg')
             #alert_var += 1;
             
         else:

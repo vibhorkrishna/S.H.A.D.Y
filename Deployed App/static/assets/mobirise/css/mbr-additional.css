@@ -4958,3 +4958,18 @@ body {
 .cid-s3MrrUyL0E P {
   color: #ffffff;
 }
+
+.iframe-container{
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-bottom: 56.25%; 
+  height: 0;
+}
+.iframe-container iframe{
+  position: absolute;
+  top: 0;
+  left: 20%;
+  width: 60%;
+  height: 60%;
+}
